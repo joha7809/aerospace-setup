@@ -12,15 +12,17 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = ['exec-and-forget sketchybar']
+# after-startup-command = ['exec-and-forget sketchybar']
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = [
-  '/bin/bash',
-  '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-]
+# exec-on-workspace-change = [
+#   '/bin/bash',
+#   '-c',
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+# ]
 
+# Setup jankyborder
+after-startup-command = ['exec-and-forget borders active_color=0xffe1e3e4']
 # Start AeroSpace at login
 start-at-login = true
 
@@ -49,7 +51,7 @@ key-mapping.preset = 'qwerty'
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
-on-focused-monitor-changed = ['move-mouse window-lazy-center']
+# on-focused-monitor-changed = ['move-mouse window-lazy-center']
 # on-focus-changed = ['move-mouse window-force-center']
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
@@ -95,10 +97,10 @@ period = 'layout tiles horizontal vertical'
 comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-h = ['focus --boundaries-action stop left', 'move-mouse window-force-center']
-j = ['focus --boundaries-action stop down', 'move-mouse window-force-center']
-k = ['focus --boundaries-action stop up', 'move-mouse window-force-center']
-l = ['focus --boundaries-action stop right', 'move-mouse window-force-center']
+h = ['focus --boundaries-action stop left']
+j = ['focus --boundaries-action stop down']
+k = ['focus --boundaries-action stop up']
+l = ['focus --boundaries-action stop right']
 
 c = ['move-mouse window-force-center']
 
@@ -133,6 +135,11 @@ p = ['focus-monitor prev', 'move-mouse window-force-center']
 n = ['focus-monitor next', 'move-mouse window-force-center']
 shift-p = 'move-workspace-to-monitor prev'
 shift-n = 'move-workspace-to-monitor next'
+
+# Open apps
+t = ['exec-and-forget open -na alacritty']
+b = ['exec-and-forget open -na firefox']
+o = ['exec-and-forget open -na obsidian']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 shift-1 = 'move-node-to-workspace 1'
@@ -223,8 +230,15 @@ shift-j = ['move-node-to-monitor next']
 
 #
 # Application-specific configurations (optional)
-#
 
-# [[on-window-detected]]
-# if.app-id = 'com.apple.reminders'
-# run = 'layout floating'
+[[on-window-detected]]
+if.app-id = 'com.apple.reminders'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'messages'
+run = 'layout floating'
