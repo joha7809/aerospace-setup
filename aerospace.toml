@@ -242,3 +242,13 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-name-regex-substring = 'messages'
 run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'java'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'discord'
+run = 'layout floating'
+
+
